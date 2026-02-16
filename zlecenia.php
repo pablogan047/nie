@@ -32,11 +32,20 @@
 
         <section id="lewa">
             <h2>Dla klientów</h2>
-            <form method="post" action="">
-<label for="x">ilu conajmniej pracowników potrzebujesz?</label><br></br>
-<input type="number">
+            <form method="post" action="zlecenia.php">
+<label for="pracownicy">ilu conajmniej pracowników potrzebujesz?</label><br></br>
+<input type="number" name="pracownicy-name" id="pracwonicy">
                 <button type="submit">szukaj firm</button>
             </form>
+
+            <?php
+            $polaczenie = new mysqli("localhost", "root", "", "remonty");
+            if (!empty($_POST['pracownicy-name'])) {
+        echo    $_POST["pracownicy-name"];
+            }
+            $sql = "SELECT liczba_pracownikow FROM wykonawcy WHERE liczba_pracownikow >= ".$_POST["pracownicy-name"] . ";";
+            echo $sql;
+            ?>
     
         </section>
 
@@ -55,3 +64,7 @@
     <footer>strone wykonał: paweł</footer>
 </body>
 </html>
+
+<?php
+$polaczenie->close();
+?>
